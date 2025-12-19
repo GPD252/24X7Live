@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -24,7 +22,7 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-            - name: Install Theme and Build
+      - name: Install Theme and Build
         run: |
           rm -rf themes/ananke
           mkdir -p themes
@@ -41,8 +39,6 @@ jobs:
     needs: build
     environment:
       name: github-pages
-    outputs:
-      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
