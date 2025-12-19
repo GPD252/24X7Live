@@ -22,7 +22,7 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Clean and Install Theme
+            - name: Clean and Install Theme
         run: |
           rm -rf themes/ananke
           mkdir -p themes
