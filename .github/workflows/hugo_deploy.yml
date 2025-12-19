@@ -20,10 +20,11 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Install Theme and Build
+           - name: Install Theme and Build
         run: |
+          rm -rf themes/ananke
           mkdir -p themes
-          git clone github.com themes/ananke
+          git clone --depth 1 github.com themes/ananke
           hugo --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
