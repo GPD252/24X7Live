@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -27,12 +25,10 @@ jobs:
       - name: Download Theme
         run: |
           mkdir -p themes
-          cd themes
-          git clone --depth 1 github.com ananke
-          cd ..
+          git clone --depth 1 github.com themes/ananke
 
       - name: Build Site
-        run: hugo --minify
+        run: hugo --minify --theme ananke
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
