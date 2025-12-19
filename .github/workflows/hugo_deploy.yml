@@ -22,11 +22,12 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Clean and Install Theme
+            - name: Install Theme and Build
         run: |
           rm -rf themes/ananke
           mkdir -p themes
           git clone --depth 1 github.com themes/ananke
+          hugo --minify
 
       - name: Build with Hugo
         run: hugo --minify --theme ananke
